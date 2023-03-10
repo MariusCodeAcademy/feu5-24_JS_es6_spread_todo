@@ -59,11 +59,15 @@ function makeOneLi(todoObj) {
   liEl.className = 'list-group-item list-group-item-action';
   if (todoObj.isDone === true) liEl.classList.add('list-group-item-dark', 'del-text');
   liEl.textContent = todoObj.title;
+  const btnToggle = document.createElement('button');
+  btnToggle.addEventListener('click', () => toggleTodo(todoObj.id));
+  btnToggle.className = 'btn btn-info float-end me-2';
+  btnToggle.innerHTML = '<i class="bi bi-check"></i>';
   const btnDel = document.createElement('button');
   btnDel.addEventListener('click', () => deleteTodo(todoObj.id));
   btnDel.className = 'btn btn-danger float-end';
   btnDel.innerHTML = '<i class="bi bi-trash3"></i>';
-  liEl.append(btnDel);
+  liEl.append(btnDel, btnToggle);
   return liEl;
 }
 
@@ -73,4 +77,9 @@ function deleteTodo(idOfTodoToBeDeleted) {
   // grazinam visus todo objek iskyrus ta kurio id yra idOfTodoToBeDeleted
   state = state.filter((tObj) => tObj.id !== idOfTodoToBeDeleted);
   render();
+}
+
+function toggleTodo(idOfTodoToBeToggled) {
+  console.log('idOfTodoToBeToggled ===', idOfTodoToBeToggled);
+  // psiaudo kodas
 }
