@@ -5,7 +5,7 @@ const INIT_STATE = [
   { id: 't_004', title: 'Learn GIT', isDone: false },
 ];
 
-const state = [...INIT_STATE];
+let state = [...INIT_STATE];
 let mainId = 4;
 
 // taikomes
@@ -32,7 +32,20 @@ function app() {
   // atnaujinti todo
 }
 
-function addNewTodo() {}
+function addNewTodo() {
+  console.log('adding new todo');
+  const title = el.input.value.trim();
+  if (title.length === 0) {
+    console.warn('tuscias todo');
+    return;
+  }
+  console.log('title ===', title);
+  const newTodoObject = { id: newId(), title, isDone: false };
+  state.push(newTodoObject);
+  render();
+  // isvalyti input
+  el.input.value = '';
+}
 
 function render(arr = state) {
   console.log('list rendering');
@@ -40,7 +53,9 @@ function render(arr = state) {
   el.list.innerHTML = '';
   const todoElsArr = arr.map(makeOneLi);
   el.list.append(...todoElsArr);
+  console.log('state ===', state);
 }
+
 // todoObj === { id: 't_001', title: 'Learn HTML', isDone: true },
 function makeOneLi(todoObj) {
   // <li class="list-group-item list-group-item-action">An item</li>
