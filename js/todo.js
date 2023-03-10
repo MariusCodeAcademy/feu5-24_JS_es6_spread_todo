@@ -29,6 +29,7 @@ function app() {
   render();
   // prideti nauja todo
   // istrinti todo
+  // uzbaigti todo
   // atnaujinti todo
 }
 
@@ -64,10 +65,18 @@ function makeOneLi(todoObj) {
   liEl.className = 'list-group-item list-group-item-action';
   if (todoObj.isDone === true) liEl.classList.add('list-group-item-dark', 'del-text');
   liEl.textContent = todoObj.title;
+  const btnDel = document.createElement('button');
+  btnDel.className = 'btn btn-danger float-end';
+  btnDel.innerHTML = '<i class="bi bi-trash3"></i>';
+  liEl.append(btnDel);
   return liEl;
 }
 
 function newId() {
   mainId++;
   return `t_${mainId.toString().padStart(3, '0')}`;
+}
+
+function deleteTodo(idOfTodoToBeDeleted) {
+  console.log('idOfTodoToBeDeleted ===', idOfTodoToBeDeleted);
 }
