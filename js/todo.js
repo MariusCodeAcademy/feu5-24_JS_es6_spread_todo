@@ -6,6 +6,7 @@ const INIT_STATE = [
 ];
 
 const state = [...INIT_STATE];
+let mainId = 4;
 
 // taikomes
 const el = {
@@ -34,13 +35,24 @@ function app() {
 function addNewTodo() {}
 
 function render(arr = state) {
-  arr.forEach((tObj) => {
-    // make new li makeOneLi()
-    // add to el.list
-  });
+  console.log('list rendering');
+  // issivalyti konteineri
+  el.list.innerHTML = '';
+  const todoElsArr = arr.map(makeOneLi);
+  el.list.append(...todoElsArr);
 }
-
+// todoObj === { id: 't_001', title: 'Learn HTML', isDone: true },
 function makeOneLi(todoObj) {
   // <li class="list-group-item list-group-item-action">An item</li>
   // sukurti ir grazinti li el
+  const liEl = document.createElement('li');
+  liEl.className = 'list-group-item list-group-item-action';
+  if (todoObj.isDone === true) liEl.classList.add('list-group-item-dark', 'del-text');
+  liEl.textContent = todoObj.title;
+  return liEl;
+}
+
+function newId() {
+  mainId++;
+  return `t_${mainId.toString().padStart(3, '0')}`;
 }

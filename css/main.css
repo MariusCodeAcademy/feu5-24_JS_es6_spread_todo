@@ -1,1 +1,8 @@
 /* @import 'common.css'; */
+
+.del-text {
+  text-decoration: line-through;
+}
+.del-text:hover {
+  /* text-decoration: line-through; */
+}
