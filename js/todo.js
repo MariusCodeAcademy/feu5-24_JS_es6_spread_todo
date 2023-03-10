@@ -1,12 +1,6 @@
-const INIT_STATE = [
-  { id: 't_001', title: 'Learn HTML', isDone: true },
-  { id: 't_002', title: 'Learn CSS', isDone: true },
-  { id: 't_003', title: 'Learn JS', isDone: false },
-  { id: 't_004', title: 'Learn GIT', isDone: false },
-];
+import { INIT_STATE, newId } from './modules/helper.js';
 
 let state = [...INIT_STATE];
-let mainId = 4;
 
 // taikomes
 const el = {
@@ -71,11 +65,6 @@ function makeOneLi(todoObj) {
   btnDel.innerHTML = '<i class="bi bi-trash3"></i>';
   liEl.append(btnDel);
   return liEl;
-}
-
-function newId() {
-  mainId++;
-  return `t_${mainId.toString().padStart(3, '0')}`;
 }
 
 function deleteTodo(idOfTodoToBeDeleted) {
