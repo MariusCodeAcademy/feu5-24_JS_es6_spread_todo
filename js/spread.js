@@ -29,3 +29,20 @@ console.log('bCopy ===', bCopy);
 console.log('b ===', b);
 
 // Object ============
+
+const user = {
+  name: 'Jane',
+  town: 'Klaipeda',
+  age: 29,
+};
+
+let userCopy = { ...user };
+userCopy.hasCar = true;
+console.log('user ===', user);
+console.log('userCopy ===', userCopy);
+const pets = {
+  hasCat: false,
+  hasDog: true,
+};
+userCopy = { ...userCopy, ...pets };
+console.log('userCopy ===', userCopy);
