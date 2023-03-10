@@ -82,4 +82,11 @@ function deleteTodo(idOfTodoToBeDeleted) {
 function toggleTodo(idOfTodoToBeToggled) {
   console.log('idOfTodoToBeToggled ===', idOfTodoToBeToggled);
   // psiaudo kodas
+  // surasti objekta kurio id idOfTodoToBeToggled,
+  const foundEl = state.find((tObj) => tObj.id === idOfTodoToBeToggled);
+  console.log('foundEl ===', foundEl);
+  // pakeisti jo isDone i priesinga
+  foundEl.isDone = !foundEl.isDone;
+  // atnaujinti sarasa su render()
+  render();
 }
