@@ -1,6 +1,8 @@
 import { INIT_STATE, newId } from './modules/helper.js';
+import { loadStore, store } from './modules/storage.js';
 
-let state = [...INIT_STATE];
+// let state = loadStore() ? loadStore() : [...INIT_STATE];
+let state = loadStore() || [...INIT_STATE];
 
 // taikomes
 const el = {
@@ -49,6 +51,7 @@ function render(arr = state) {
   const todoElsArr = arr.map(makeOneLi);
   el.list.append(...todoElsArr);
   console.log('state ===', state);
+  store(state);
 }
 
 // todoObj === { id: 't_001', title: 'Learn HTML', isDone: true },
@@ -90,3 +93,13 @@ function toggleTodo(idOfTodoToBeToggled) {
   // atnaujinti sarasa su render()
   render();
 }
+
+// local storage support
+
+// kiekvienam pasikeitimui ivykus mes irasom i localStorage
+// store([1, 2, 4]);
+// tik uzsikrovus aplikacijai, patikrinam ar turim reiksmiu localStorage
+// loadStore();
+// jei turim naudojam,
+
+// jei ne imam INIT_STATE
