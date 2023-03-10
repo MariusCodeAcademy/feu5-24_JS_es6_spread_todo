@@ -35,3 +35,15 @@ const users = [
     isAdmin: false,
   },
 ];
+
+// gauti nauja masyva kuriame butu tik name,age,email,
+// let usersCopy = [...users];
+const smallerObjArr = users.map((uObj) => {
+  const uObjCopy = { ...uObj };
+  delete uObjCopy.isMarried;
+  delete uObjCopy.isAdmin;
+  return uObjCopy;
+});
+
+console.table(smallerObjArr);
+console.table(users);
