@@ -66,6 +66,7 @@ function makeOneLi(todoObj) {
   if (todoObj.isDone === true) liEl.classList.add('list-group-item-dark', 'del-text');
   liEl.textContent = todoObj.title;
   const btnDel = document.createElement('button');
+  btnDel.addEventListener('click', () => deleteTodo(todoObj.id));
   btnDel.className = 'btn btn-danger float-end';
   btnDel.innerHTML = '<i class="bi bi-trash3"></i>';
   liEl.append(btnDel);
@@ -79,4 +80,8 @@ function newId() {
 
 function deleteTodo(idOfTodoToBeDeleted) {
   console.log('idOfTodoToBeDeleted ===', idOfTodoToBeDeleted);
+  // filtruojam state
+  // grazinam visus todo objek iskyrus ta kurio id yra idOfTodoToBeDeleted
+  state = state.filter((tObj) => tObj.id !== idOfTodoToBeDeleted);
+  render();
 }
