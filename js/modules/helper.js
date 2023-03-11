@@ -5,9 +5,10 @@ export const INIT_STATE = [
   { id: 't_004', title: 'Learn GIT', isDone: false },
 ];
 
-let mainId = 4;
+let mainId = localStorage.getItem('mainId') ?? 4;
 
 export function newId() {
   mainId++;
+  localStorage.setItem('mainId', mainId);
   return `t_${mainId.toString().padStart(3, '0')}`;
 }
