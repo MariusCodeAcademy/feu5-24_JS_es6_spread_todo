@@ -21,8 +21,6 @@ class App {
   }
 
   makeOneLi(todoObj) {
-    // <li class="list-group-item list-group-item-action">An item</li>
-    // sukurti ir grazinti li el
     const liEl = document.createElement('li');
     liEl.className = 'list-group-item list-group-item-action';
     if (todoObj.isDone === true) liEl.classList.add('list-group-item-dark', 'del-text');
@@ -33,10 +31,7 @@ class App {
     btnToggle.innerHTML = '<i class="bi bi-check"></i>';
     const btnDel = document.createElement('button');
 
-    btnDel.addEventListener('click', function () {
-      console.log('this ===', this);
-      this.deleteTodo(todoObj.id).bind(this);
-    });
+    btnDel.addEventListener('click', this.deleteTodo.bind(this, todoObj.id));
     btnDel.className = 'btn btn-danger float-end';
     btnDel.innerHTML = '<i class="bi bi-trash3"></i>';
     liEl.append(btnDel, btnToggle);
@@ -47,7 +42,7 @@ class App {
     console.log('list rendering');
     // issivalyti konteineri
     this.el.list.innerHTML = '';
-    const todoElsArr = arr.map(this.makeOneLi);
+    const todoElsArr = arr.map(this.makeOneLi.bind(this));
     this.el.list.append(...todoElsArr);
     console.log('App.state ===', App.state);
     store(App.state);
